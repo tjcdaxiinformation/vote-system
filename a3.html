@@ -145,46 +145,47 @@
             flex-shrink: 0;
         }
 
-        /* 第二張：工作小組卡片 (較寬鬆大氣) */
+        /* 第二張：工作小組卡片 (精緻化雙排自動換行字卡) */
         .cand-v-card-s2 {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: space-between;
-            border: 1.2px solid #000;
-            width: 10.5mm;
-            height: 52mm;
-            padding: 1.5mm 0.2mm;
+            border: 1px solid #000;
+            width: 9.2mm;
+            height: 27.5mm;
+            padding: 0.8mm 0.1mm;
             box-sizing: border-box;
             background-color: #fff;
+            flex-shrink: 0;
         }
         .cand-v-card-s2 .cand-church {
-            font-size: 6.5pt;
+            font-size: 5.5pt;
             font-weight: bold;
             color: #444;
-            writing-mode: vertical-rl;
-            text-orientation: upright;
-            margin-bottom: 1mm;
+            margin-bottom: 0.5mm;
             border-bottom: 1px dashed #999;
-            padding-bottom: 0.5mm;
+            padding-bottom: 0.3mm;
+            width: 100%;
+            text-align: center;
         }
         .cand-v-card-s2 .cand-name {
-            font-size: 10pt;
+            font-size: 8.5pt;
             font-weight: bold;
             writing-mode: vertical-rl;
             text-orientation: upright;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
             flex-grow: 1;
             display: flex;
             align-items: center;
             justify-content: center;
-            line-height: 1.1;
+            line-height: 1;
         }
         .cand-v-card-s2 .cand-square-box {
-            width: 7mm;
-            height: 7mm;
-            border: 1.5px solid #000;
-            margin-top: 1.5mm;
+            width: 4.5mm;
+            height: 4.5mm;
+            border: 1px solid #000;
+            margin-top: 1mm;
             background-color: #fff;
             flex-shrink: 0;
         }
@@ -224,10 +225,12 @@
         }
         .group-cards-container {
             display: flex;
+            flex-flow: row wrap; /* 支援橫向排列，自動換行成上下兩排 */
             gap: 1mm;
             overflow: hidden;
             height: 100%;
-            align-items: center;
+            align-content: flex-start; /* 緊貼上方開始排列 */
+            padding-top: 0.5mm;
         }
         .split-sub-row {
             display: flex;
