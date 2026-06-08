@@ -145,47 +145,47 @@
             flex-shrink: 0;
         }
 
-        /* 第二張：工作小組卡片 (精緻化雙排自動換行字卡) */
+        /* 第二張：工作小組卡片 (極致精緻化雙排/三排自動換行字卡) */
         .cand-v-card-s2 {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: space-between;
             border: 1px solid #000;
-            width: 9.2mm;
-            height: 27.5mm;
-            padding: 0.8mm 0.1mm;
+            width: 8.2mm; /* 稍微縮窄以容納更多欄 */
+            height: 25mm; /* 稍微縮短以容納更多列，防止溢出 */
+            padding: 0.6mm 0.1mm;
             box-sizing: border-box;
             background-color: #fff;
             flex-shrink: 0;
         }
         .cand-v-card-s2 .cand-church {
-            font-size: 5.5pt;
+            font-size: 5pt;
             font-weight: bold;
             color: #444;
-            margin-bottom: 0.5mm;
+            margin-bottom: 0.3mm;
             border-bottom: 1px dashed #999;
-            padding-bottom: 0.3mm;
+            padding-bottom: 0.2mm;
             width: 100%;
             text-align: center;
         }
         .cand-v-card-s2 .cand-name {
-            font-size: 8.5pt;
+            font-size: 8pt;
             font-weight: bold;
             writing-mode: vertical-rl;
             text-orientation: upright;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.3px;
             flex-grow: 1;
             display: flex;
             align-items: center;
             justify-content: center;
-            line-height: 1;
+            line-height: 0.95;
         }
         .cand-v-card-s2 .cand-square-box {
-            width: 4.5mm;
-            height: 4.5mm;
+            width: 4mm;
+            height: 4mm;
             border: 1px solid #000;
-            margin-top: 1mm;
+            margin-top: 0.8mm;
             background-color: #fff;
             flex-shrink: 0;
         }
@@ -225,7 +225,7 @@
         }
         .group-cards-container {
             display: flex;
-            flex-flow: row wrap; /* 支援橫向排列，自動換行成上下兩排 */
+            flex-flow: row wrap; /* 支援橫向排列，自動換行成上下兩至三排 */
             gap: 1mm;
             overflow: hidden;
             height: 100%;
@@ -404,13 +404,13 @@
     };
 
     const CANDIDATES = {
-        "教務": ["林新民", "黃孟平", "梁秀娟", "宗恆宇", "田文明", "李永賢", "卓暐嘉", "賴多加", "楊念華", "姜鎮信", "鍾阿亮"],
-        "教育": ["黃浩瀚", "曾杏儀", "張蓉惠", "張錦琇", "林宣平", "胡燕琳", "林月霞", "田思惠", "胡采恩"],
+        "教務": ["林新民", "黃孟平", "梁秀娟", "宗恆宇", "田文明", "李永賢", "卓暐嘉", "賴多加", "楊念華", "姜鎮信", "鍾阿亮", "胡正一", "陳微慎", "李永生", "李良僕", "杜文義", "吳以利沙"],
+        "教育": ["黃浩瀚", "曾杏儀", "張蓉惠", "張錦琇", "林宣平", "胡燕琳", "林月霞", "田思惠", "胡采恩", "胡正一", "陳微慎", "李永生", "李良僕", "杜文義", "吳以利沙"],
         "宣道": ["黃詩華", "簡忠榮", "王鴻志", "林俊傑", "張勇光", "林新賜", "卓村榮", "胡明正", "楊念華", "姜忠良", "胡正一", "陳微慎", "李永生", "李良僕", "杜文義", "吳以利沙"],
-        "事務": ["林佳芳", "鍾明興", "楊忠生", "張金德", "彭志強", "羅香美", "卓建新", "胡明勇", "胡弘旭", "張大成", "劉偉迦"],
-        "資訊": ["白米加", "黃彥綸", "林茜葦", "林盛強", "黃佳寧", "陳齊揚", "蔡閣雅", "胡倩蓉", "姜呈安", "劉偉凡"],
-        "會計": ["羅惠真", "林惠雯", "鍾霖恩", "周筱萍", "王路得", "李佳恩", "鍾秀錦", "陳舒瑤", "葛美蓮", "簡紫萱"],
-        "出納": ["洪靜雯", "李美秀", "黃琬珊", "馬秀彥", "鍾秀珍", "胡美珠", "楊慧玲"]
+        "事務": ["林佳芳", "鍾明興", "楊忠生", "張金德", "彭志強", "羅香美", "卓建新", "胡明勇", "胡弘旭", "張大成", "劉偉迦", "胡正一", "陳微慎", "李永生", "李良僕", "杜文義", "吳以利沙"],
+        "資訊": ["白米加", "黃彥綸", "林茜葦", "林盛強", "黃佳寧", "陳齊揚", "蔡閣雅", "胡倩蓉", "姜呈安", "劉偉凡", "胡正一", "陳微慎", "李永生", "李良僕", "杜文義", "吳以利沙"],
+        "會計": ["羅惠真", "林惠雯", "鍾霖恩", "周筱萍", "王路得", "李佳恩", "鍾秀錦", "陳舒瑤", "葛美蓮", "簡紫萱", "胡正一", "陳微慎", "李永生", "李良僕", "杜文義", "吳以利沙"],
+        "出納": ["洪靜雯", "李美秀", "黃琬珊", "馬秀彥", "鍾秀珍", "胡美珠", "楊慧玲", "胡正一", "陳微慎", "李永生", "李良僕", "杜文義", "吳以利沙"]
     };
 
     // 建立反向對照：姓名對應推薦代表教會
