@@ -145,40 +145,48 @@
             flex-shrink: 0;
         }
 
-/* 第二張：工作小組卡片 (已修正高度與排版，避免文字被裁切) */
+/* 第二張：工作小組卡片 - 瘦身版 */
         .cand-v-card-s2 {
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: space-between;
+            justify-content: center; /* 改為置中 */
             border: 1px solid #000;
-            width: 8.0mm; /* 稍微縮窄 */
-            height: 28mm; /* 從 25mm 增加至 28mm，解決被覆蓋問題 */
-            padding: 0.5mm 0.1mm;
+            width: 7.2mm;            /* 縮窄寬度以利於多塞入幾個 */
+            height: 22mm;            /* 大幅降低高度，確保兩列可容納 */
+            padding: 0.3mm 0.1mm;
             box-sizing: border-box;
             background-color: #fff;
             flex-shrink: 0;
         }
         .cand-v-card-s2 .cand-church {
-            font-size: 4.5pt; /* 微調教會名稱字體以節省空間 */
+            font-size: 4pt;          /* 縮小教會名 */
             font-weight: bold;
             color: #444;
-            margin-bottom: 0.2mm;
+            margin-bottom: 0.1mm;
             border-bottom: 1px dashed #999;
             width: 100%;
             text-align: center;
         }
         .cand-v-card-s2 .cand-name {
-            font-size: 7.5pt; /* 微調姓名大小，確保完整顯示 */
+            font-size: 7pt;          /* 稍微縮小姓名 */
             font-weight: bold;
             writing-mode: vertical-rl;
             text-orientation: upright;
-            letter-spacing: 0.1px;
+            letter-spacing: 0px;     /* 取消間距 */
             flex-grow: 1;
             display: flex;
             align-items: center;
             justify-content: center;
             line-height: 1;
+        }
+        .cand-v-card-s2 .cand-square-box {
+            width: 3.5mm;            /* 縮小選票方框 */
+            height: 3.5mm;
+            border: 1px solid #000;
+            margin-top: 0.5mm;
+            background-color: #fff;
+            flex-shrink: 0;
         }
 
         /* ==========================================
