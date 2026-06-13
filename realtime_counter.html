@@ -598,7 +598,10 @@ function switchPhase(phaseNum) {
 
 function enableSidebarRoles(enable) {
 const roles = ["宣道", "教務", "教育", "事務", "資訊", "會計", "出納"];
-    roles.forEach(role => {
+// 確保這裡的迴圈也是依照這個陣列跑
+roles.forEach(role => {
+    // 程式碼保持不變，因為上面的 roles 陣列已經改了順序
+});
         const btn = document.getElementById(`role-btn-${role}`);
         btn.disabled = !enable;
         if (!enable) btn.classList.remove('active');
