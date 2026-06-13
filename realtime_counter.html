@@ -252,42 +252,41 @@
 
     <div class="console-container">
         <!-- 左側導航欄 -->
-        <div class="sidebar">
-            <div class="sidebar-title">🏷️ 選舉職務分區</div>
-            <button class="role-btn active" id="role-btn-召集人" onclick="handleRoleClick('召集人')">
-                <span>召集人</span>
-                <span class="role-btn-tally" id="sidebar-tally-召集人">0 票</span>
-            </button>
-            <button class="role-btn" id="role-btn-宣道" onclick="handleRoleClick('宣道')" disabled>
-                <span>宣道組 (雙選)</span>
-                <span class="role-btn-tally" id="sidebar-tally-宣道">0 票</span> 
-            </button>
-            <button class="role-btn" id="role-btn-教務" onclick="handleRoleClick('教務')" disabled>
-                <span>教務</span>
-                <span class="role-btn-tally" id="sidebar-tally-教務">0 票</span>
-            </button>
-            <button class="role-btn" id="role-btn-教育" onclick="handleRoleClick('教育')" disabled>
-                <span>教育</span>
-                <span class="role-btn-tally" id="sidebar-tally-教育">0 票</span>
-            </button>
-            <button class="role-btn" id="role-btn-事務" onclick="handleRoleClick('事務')" disabled>
-                <span>事務</span>
-                <span class="role-btn-tally" id="sidebar-tally-事務">0 票</span>
-            </button>
-            <button class="role-btn" id="role-btn-資訊" onclick="handleRoleClick('資訊')" disabled>
-                <span>資訊</span>
-                <span class="role-btn-tally" id="sidebar-tally-資訊">0 票</span>
-            </button>
-            <button class="role-btn" id="role-btn-會計" onclick="handleRoleClick('會計')" disabled>
-                <span>會計</span>
-                <span class="role-btn-tally" id="sidebar-tally-會計">0 票</span>
-            </button>
-            <button class="role-btn" id="role-btn-出納" onclick="handleRoleClick('出納')" disabled>
-                <span>出納</span>
-                <span class="role-btn-tally" id="sidebar-tally-出納">0 票</span>
-            </button>
-        </div>
-
+<div class="sidebar">
+    <div class="sidebar-title">🏷️ 選舉職務分區</div>
+    <button class="role-btn active" id="role-btn-召集人" onclick="handleRoleClick('召集人')">
+        <span>召集人</span>
+        <span class="role-btn-tally" id="sidebar-tally-召集人">0 票</span>
+    </button>
+    <button class="role-btn" id="role-btn-宣道" onclick="handleRoleClick('宣道')" disabled>
+        <span>宣道組 (雙選)</span>
+        <span class="role-btn-tally" id="sidebar-tally-宣道">0 票</span> 
+    </button>
+    <button class="role-btn" id="role-btn-教務" onclick="handleRoleClick('教務')" disabled>
+        <span>教務</span>
+        <span class="role-btn-tally" id="sidebar-tally-教務">0 票</span>
+    </button>
+    <button class="role-btn" id="role-btn-教育" onclick="handleRoleClick('教育')" disabled>
+        <span>教育</span>
+        <span class="role-btn-tally" id="sidebar-tally-教育">0 票</span>
+    </button>
+    <button class="role-btn" id="role-btn-事務" onclick="handleRoleClick('事務')" disabled>
+        <span>事務</span>
+        <span class="role-btn-tally" id="sidebar-tally-事務">0 票</span>
+    </button>
+    <button class="role-btn" id="role-btn-資訊" onclick="handleRoleClick('資訊')" disabled>
+        <span>資訊</span>
+        <span class="role-btn-tally" id="sidebar-tally-資訊">0 票</span>
+    </button>
+    <button class="role-btn" id="role-btn-會計" onclick="handleRoleClick('會計')" disabled>
+        <span>會計</span>
+        <span class="role-btn-tally" id="sidebar-tally-會計">0 票</span>
+    </button>
+    <button class="role-btn" id="role-btn-出納" onclick="handleRoleClick('出納')" disabled>
+        <span>出納</span>
+        <span class="role-btn-tally" id="sidebar-tally-出納">0 票</span>
+    </button>
+</div>
         <!-- 中間唱票格網 -->
         <div class="main-panel">
             <div class="panel-header">
@@ -597,19 +596,23 @@ function switchPhase(phaseNum) {
 }
 
 function enableSidebarRoles(enable) {
+    // 統一陣列順序：宣道優先
+// 第 625 行附近
 const roles = ["宣道", "教務", "教育", "事務", "資訊", "會計", "出納"];
-// 確保這裡的迴圈也是依照這個陣列跑
-roles.forEach(role => {
-    // 程式碼保持不變，因為上面的 roles 陣列已經改了順序
-});
+    
+    roles.forEach(role => {
         const btn = document.getElementById(`role-btn-${role}`);
-        btn.disabled = !enable;
-        if (!enable) btn.classList.remove('active');
+        if (btn) {
+            btn.disabled = !enable;
+            if (!enable) btn.classList.remove('active');
+        }
     });
     
     const convenerBtn = document.getElementById('role-btn-召集人');
-    convenerBtn.disabled = enable;
-    if (enable) convenerBtn.classList.remove('active');
+    if (convenerBtn) {
+        convenerBtn.disabled = enable;
+        if (enable) convenerBtn.classList.remove('active');
+    }
 }
 
 function handleRoleClick(role) {
