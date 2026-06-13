@@ -145,50 +145,62 @@
             flex-shrink: 0;
         }
 
-/* 第二張：工作小組卡片 - 瘦身版 */
+/* 確保卡片容器只容納兩排，寬度調整 */
+        .group-cards-container {
+            display: flex;
+            flex-flow: row wrap; 
+            gap: 1mm;
+            align-content: flex-start;
+            padding-top: 0.5mm;
+            /* 強制限制寬度，使卡片自動斷行成為兩排 */
+            max-width: 100%; 
+        }
+
         .cand-v-card-s2 {
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center; /* 改為置中 */
+            justify-content: center;
             border: 1px solid #000;
-            width: 7.2mm;            /* 縮窄寬度以利於多塞入幾個 */
-            height: 22mm;            /* 大幅降低高度，確保兩列可容納 */
-            padding: 0.3mm 0.1mm;
+            width: 8.5mm;    /* 稍微放寬一點點，讓名字在兩排時更舒服 */
+            height: 20mm;    /* 再縮短，確保不會超出高度 */
+            padding: 0.2mm;
             box-sizing: border-box;
             background-color: #fff;
             flex-shrink: 0;
         }
+
         .cand-v-card-s2 .cand-church {
-            font-size: 4pt;          /* 縮小教會名 */
+            font-size: 3.5pt; /* 字體再縮小 */
             font-weight: bold;
-            color: #444;
+            color: #555;
             margin-bottom: 0.1mm;
-            border-bottom: 1px dashed #999;
+            border-bottom: 1px dashed #ccc;
             width: 100%;
             text-align: center;
         }
+
         .cand-v-card-s2 .cand-name {
-            font-size: 7pt;          /* 稍微縮小姓名 */
+            font-size: 6.5pt; /* 縮小姓名，防止被遮蓋 */
             font-weight: bold;
             writing-mode: vertical-rl;
             text-orientation: upright;
-            letter-spacing: 0px;     /* 取消間距 */
+            letter-spacing: -0.2px; /* 姓名間距內縮 */
             flex-grow: 1;
             display: flex;
             align-items: center;
             justify-content: center;
-            line-height: 1;
+            line-height: 0.9;
         }
+
         .cand-v-card-s2 .cand-square-box {
-            width: 3.5mm;            /* 縮小選票方框 */
-            height: 3.5mm;
+            width: 3mm;    /* 縮小方框 */
+            height: 3mm;
             border: 1px solid #000;
-            margin-top: 0.5mm;
+            margin-top: 0.3mm;
             background-color: #fff;
             flex-shrink: 0;
         }
-
         /* ==========================================
            💼 第二張：工作小組 2x2 格網版面
            ========================================== */
