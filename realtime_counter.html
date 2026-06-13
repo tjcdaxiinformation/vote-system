@@ -194,7 +194,7 @@
             border: 1px solid #f59e0b;
         }
 
-        .rank-badge { inline-block; width: 18px; height: 18px; line-height: 18px; text-align: center; border-radius: 50%; font-size: 0.75rem; font-weight: bold; color: black; margin-right: 5px; vertical-align: middle; }
+        .rank-badge { display: inline-block; width: 18px; height: 18px; line-height: 18px; text-align: center; border-radius: 50%; font-size: 0.75rem; font-weight: bold; color: black; margin-right: 5px; vertical-align: middle; }
         .rank-1 { background-color: #f59e0b; }
         .rank-2 { background-color: #cbd5e1; }
         .rank-3 { background-color: #b45309; }
@@ -305,7 +305,7 @@
             <div class="control-card" style="display: flex; gap: 8px; justify-content: center; align-items: center; padding: 12px 10px;">
                 <button class="attendee-btn" onclick="adjustAttendees(-1)">-</button>
                 <input type="number" id="attendeeInput" class="attendee-input" value="77" min="1" max="100" onchange="handleAttendeeInputChange(this.value)">
-                <button class="attendee-btn" onclick="adjustAttendees 1)">+</button>
+                <button class="attendee-btn" onclick="adjustAttendees(1)">+</button>
             </div>
 
             <div class="control-group-title">📊 當前階段開票進度</div>
@@ -412,7 +412,6 @@ const CANDIDATES_DATA = {
     "出納": ["洪靜雯", "李美秀", "黃琬珊", "馬秀彥", "鍾秀珍", "胡美珠", "楊慧玲", "胡正一", "陳微慎", "李永生", "李良僕", "杜文義", "吳以利沙"]
 };
 
-// 11間教會與其對應的77席職務人員列表
 const CHURCH_MEMBERS = {
     "八德": ["林新民", "黃詩華", "黃浩瀚", "林佳芳", "白米加", "羅惠真", "洪靜雯"],
     "崎頂": ["黃孟平", "簡忠榮", "曾杏儀", "鍾明興", "黃彥綸", "林惠雯", "李美秀", "胡正一"],
@@ -432,7 +431,7 @@ const CHURCH_MAP = {
     "教育": {"黃浩瀚":"八德", "曾杏儀":"崎頂", "張蓉惠":"大溪", "張錦琇":"義盛", "林宣平":"大灣", "胡燕琳":"雪霧鬧", "林月霞":"上巴陵", "田思惠":"中巴陵", "胡采恩":"三光", "胡正一":"崎頂", "陳微慎":"大溪", "李永生":"大灣", "李良僕":"大灣", "杜文義":"中巴陵", "吳以利沙":"光華"},
     "宣道": {"黃詩華":"八德", "簡忠榮":"崎頂", "王鴻志":"大溪", "林俊傑":"復興", "張勇光":"義盛", "林新賜":"大灣", "卓村榮":"雪霧鬧", "胡明正":"上巴陵", "楊念華":"中巴陵", "姜忠良":"三光", "胡正一":"崎頂", "陳微慎":"大溪", "李永生":"大灣", "李良僕":"大灣", "杜文義":"中巴陵", "吳以利沙":"光華"},
     "事務": {"林佳芳":"八德", "鍾明興":"崎頂", "楊忠生":"大溪", "張金德":"復興", "彭志強":"義盛", "羅香美":"大灣", "卓建新":"雪霧鬧", "胡明勇":"上巴陵", "胡弘旭":"中巴陵", "張大成":"三光", "劉偉迦":"光華", "胡正一":"崎頂", "陳微慎":"大溪", "李永生":"大灣", "李良僕":"大灣", "杜文義":"中巴陵", "吳以利沙":"光華"},
-    "資訊": {"白米加":"八德", "黃彥綸":"崎頂", "林茜葦":"大溪", "林盛強":"復興", "黃佳寧":"大灣", "陳齊揚":"雪霧鬧", "蔡閣雅":"上巴陵", "胡倩蓉":"中巴陵", "姜呈安":"三光", "劉偉凡":"光華", "胡正一":"崎頂", "陳微慎":"大溪", "李永生":"大灣", "李良僕":"大灣", "杜文義":"光華", "吳以利沙":"光華"},
+    "資訊": {"白米加":"八德", "黃彥綸":"崎頂", "林茜葦":"大溪", "林盛強":"復興", "黃佳寧":"大灣", "陳齊揚":"雪霧鬧", "蔡閣雅":"上巴陵", "胡倩蓉":"中巴陵", "姜呈安":"三光", "劉偉凡":"光華", "胡正一":"崎頂", "陳微慎":"大溪", "李永生":"大灣", "李良僕":"大灣", "杜文義":"中巴陵", "吳以利沙":"光華"},
     "會計": {"羅惠真":"八德", "林惠雯":"崎頂", "鍾霖恩":"大溪", "周筱萍":"復興", "王路得":"義盛", "李佳恩":"大灣", "鍾秀錦":"雪霧鬧", "陳舒瑤":"上巴陵", "葛美蓮":"中巴陵", "簡紫萱":"三光", "胡正一":"崎頂", "陳微慎":"大溪", "李永生":"大灣", "李良僕":"大灣", "杜文義":"中巴陵", "吳以利沙":"光華"},
     "出納": {"洪靜雯":"八德", "李美秀":"崎頂", "黃琬珊":"大溪", "馬秀彥":"大灣", "鍾秀珍":"雪霧鬧", "胡美珠":"上巴陵", "楊慧玲":"三光" , "胡正一":"崎頂", "陳微慎":"大溪", "李永生":"大灣", "李良僕":"大灣", "杜文義":"中巴陵", "吳以利沙":"光華"}
 };
@@ -445,7 +444,7 @@ Object.entries(CHURCH_MEMBERS).forEach(([church, members]) => {
 });
 
 const LIMITS = {
-    "召集人": 1, "教務": 1, "教育": 1, "宣道": 2, "事務": 1, "資訊": 1, "會計": 1, "出納": 1
+    "召集人": 1, "宣道": 2, "教務": 1, "教育": 1, "事務": 1, "資訊": 1, "會計": 1, "出納": 1
 };
 
 let state = {
@@ -513,15 +512,18 @@ window.receiveStateFromOpener = function(parentState) {
     updateUI();
 };
 
+/* 🎙️ 核心引擎功能修復接回 */
 function speakVote(category, name, count) {
     if (state.muteSpeech) return;
     try {
         window.speechSynthesis.cancel();
-        const utterance = new SynthesisUtterance(`${category}，${name}，${count}票`);
+        const utterance = new SpeechSynthesisUtterance(`${category}，${name}，${count}票`);
         utterance.lang = "zh-TW";
         utterance.rate = 1.15;
         window.speechSynthesis.speak(utterance);
-    } catch (e) {}
+    } catch (e) {
+        console.log("語音錯誤:", e);
+    }
 }
 
 function toggleMute(shouldMute) {
@@ -535,13 +537,10 @@ function toggleMute(shouldMute) {
 
 function switchPhase(phaseNum) {
     state.activePhase = phaseNum;
-    
     if (phaseNum === 1) {
         document.getElementById('phase1Btn').classList.add('active');
         document.getElementById('phase1Btn').classList.remove('gold-mode');
         document.getElementById('phase2Btn').classList.remove('active');
-        document.getElementById('phase2Btn').classList.remove('gold-mode');
-        
         enableSidebarRoles(false);
         state.currentRole = '召集人';
         document.getElementById('currentRoleTitle').innerHTML = `召集人 <span class="badge badge-blue">應選 1 名</span>`;
@@ -549,7 +548,6 @@ function switchPhase(phaseNum) {
         document.getElementById('phase2Btn').classList.add('active');
         document.getElementById('phase2Btn').classList.add('gold-mode');
         document.getElementById('phase1Btn').classList.remove('active');
-        
         enableSidebarRoles(true);
         state.currentRole = '宣道';
         document.getElementById('currentRoleTitle').innerHTML = `各組聯控唱票 <span class="badge badge-gold">不需換頁、一體化計票中</span>`;
@@ -559,7 +557,6 @@ function switchPhase(phaseNum) {
     document.getElementById('searchInput').focus();
 }
 
-/* 核心修復：語法閉合與順序定義 */
 function enableSidebarRoles(enable) {
     const roles = ["宣道", "教務", "教育", "事務", "資訊", "會計", "出納"];
     roles.forEach(role => {
@@ -569,7 +566,6 @@ function enableSidebarRoles(enable) {
             if (!enable) btn.classList.remove('active');
         }
     });
-    
     const convenerBtn = document.getElementById('role-btn-召集人');
     if (convenerBtn) {
         convenerBtn.disabled = enable;
@@ -579,13 +575,9 @@ function enableSidebarRoles(enable) {
 
 function handleRoleClick(role) {
     state.currentRole = role;
-    
     document.querySelectorAll('.role-btn').forEach(btn => {
-        if (btn.id === `role-btn-${role}`) {
-            btn.classList.add('active');
-        } else {
-            btn.classList.remove('active');
-        }
+        if (btn.id === `role-btn-${role}`) btn.classList.add('active');
+        else btn.classList.remove('active');
     });
 
     if (state.activePhase === 2) {
@@ -605,10 +597,8 @@ function adjustAttendees(amount) {
     let current = parseInt(state.attendeesCount) || 77;
     current = Math.max(1, current + amount);
     state.attendeesCount = current;
-    
     const input = document.getElementById('attendeeInput');
     if (input) input.value = current;
-
     saveState();
     updateUI();
 }
@@ -628,10 +618,7 @@ function addVote(role, name) {
     const simulatedBallots = LIMITS[role] === 1 ? simulatedSum : Math.ceil(simulatedSum / 2);
 
     if (simulatedBallots > state.attendeesCount) {
-        showCustomAlert(
-            "🚨 席次超額攔截警報", 
-            `無法登錄選票！【${role}】開出張數 (${simulatedBallots} 張) 已超過今日大會實際出席人數 (${state.attendeesCount} 人)。`
-        );
+        showCustomAlert("🚨 席次超額攔截警報", `無法登錄選票！【${role}】開出張數 (${simulatedBallots} 張) 已超過今日大會實際出席人數 (${state.attendeesCount} 人)。`);
         speakWarningAlert(`警告！${role}票數已達人數上限`);
         return;
     }
@@ -640,7 +627,7 @@ function addVote(role, name) {
 
 function executeAddVote(role, name) {
     state.votes[role][name] = (state.votes[role][name] || 0) + 1;
-    state.history.push({ action: "ADD", role: role, name: name });
+    state.history.push({ action: "ADD", role: role, name: name, timestamp: new Date().toLocaleTimeString() });
     speakVote(role, name, state.votes[role][name]);
     saveState();
     updateUI();
@@ -649,19 +636,24 @@ function executeAddVote(role, name) {
 function minusVote(role, name) {
     if (!state.votes[role][name] || state.votes[role][name] <= 0) return;
     state.votes[role][name] -= 1;
-    state.history.push({ action: "MINUS", role: role, name: name });
+    state.history.push({ action: "MINUS", role: role, name: name, timestamp: new Date().toLocaleTimeString() });
     speakVote(`扣票${role}`, name, `目前${state.votes[role][name]}票`);
     saveState();
     updateUI();
 }
 
 function undoLastAction() {
-    if (state.history.length === 0) return;
+    if (state.history.length === 0) {
+        showCustomAlert("提示", "無唱票紀錄可供復原！");
+        return;
+    }
     const last = state.history.pop();
     if (last.action === "ADD") {
         state.votes[last.role][last.name] -= 1;
+        speakVote(`復原${last.role}`, last.name, `減回一票`);
     } else {
         state.votes[last.role][last.name] += 1;
+        speakVote(`復原${last.role}`, last.name, `加回一票`);
     }
     saveState();
     updateUI();
@@ -695,6 +687,8 @@ function handleSearchKey(event) {
             addVote(matched[0].role, matched[0].name);
             event.target.value = '';
             filterConsoleCards('');
+        } else {
+            showCustomAlert("搜尋無匹配", `找不到名稱含有「${query}」的人。`);
         }
     } else {
         setTimeout(() => { filterConsoleCards(event.target.value.trim()); }, 50);
@@ -705,13 +699,20 @@ function filterConsoleCards(query) {
     const cards = document.querySelectorAll('.cand-card');
     cards.forEach(card => {
         const name = card.dataset.name;
-        if (name.includes(query)) card.style.display = "flex";
-        else card.style.display = "none";
+        if (name.includes(query)) {
+            card.style.display = "flex";
+            const section = card.closest('.group-section');
+            if (section) section.style.display = "block";
+        } else {
+            card.style.display = "none";
+        }
     });
 }
 
+/* 📊 100% 數據核心精準重構 */
 function updateUI() {
     const isViewer = window.location.hash === "#viewer";
+    
     if (isViewer) {
         document.getElementById('consoleView').classList.add('hidden');
         document.getElementById('viewerView').classList.remove('hidden');
@@ -721,40 +722,55 @@ function updateUI() {
 
         if (state.activePhase === 1) {
             document.getElementById('viewerCurrentRoleBadge').innerText = "第一階段：召集人選舉";
+            document.getElementById('viewerCurrentRoleBadge').className = "badge badge-gold";
+            grid.className = "viewer-main-grid single-col";
+
             const roleVotes = state.votes["召集人"] || {};
-            const sum = Object.values(roleVotes).reduce((a, b) => a + b, 0);
-            document.getElementById('viewerTotalBallots').innerText = `${sum} 張`;
-            
+            const sumOfVotes = Object.values(roleVotes).reduce((a, b) => a + b, 0);
+            document.getElementById('viewerTotalBallots').innerText = `${sumOfVotes} 張`;
+            const percent = Math.min(Math.round((sumOfVotes / state.attendeesCount) * 100), 100);
+            document.getElementById('viewerTurnoutRate').innerText = `${percent}%`;
+
             let panelHtml = `<div class="viewer-panel"><div class="viewer-panel-title"><span>【召集人】得票即時排行榜</span></div><div class="viewer-chart-list">`;
             const sorted = Object.entries(roleVotes).filter(([_, c]) => c > 0).sort((a, b) => b[1] - a[1]);
             const maxVote = sorted.length > 0 ? sorted[0][1] : 1;
 
             if (sorted.length === 0) {
-                panelHtml += `<div style="text-align: center; color: var(--text-muted); padding: 50px 0;">等待第一張選票...</div>`;
+                panelHtml += `<div style="text-align: center; color: var(--text-muted); padding: 80px 0;">唱票中，等待第一張選票...</div>`;
             } else {
                 sorted.forEach(([name, count], index) => {
                     const percentage = (count / maxVote) * 100;
                     const isWinner = index < 1;
                     panelHtml += `
                         <div class="viewer-bar-container">
-                            <div class="viewer-bar-label"><span>[${CONVENER_CHURCH_MAP[name]||"小區"}] ${name} ${isWinner?'👑':''}</span><span style="color:var(--accent-green);">${count} 票</span></div>
+                            <div class="viewer-bar-label"><span><span class="rank-badge ${index<3?'rank-'+(index+1):'rank-normal'}">${index+1}</span> [${CONVENER_CHURCH_MAP[name]||"小區"}] ${name} ${isWinner?'👑 預計當選':''}</span><span style="color:var(--accent-green);font-size:1.2rem;">${count} 票</span></div>
                             <div class="viewer-bar-outer"><div class="viewer-bar-inner gold-style ${isWinner?'winner-bar':''}" style="width: ${percentage}%;"></div></div>
                         </div>`;
                 });
             }
             grid.innerHTML = panelHtml + `</div></div>`;
         } else {
-            /* 投影看板同步更新：改為宣道優先順序 */
             document.getElementById('viewerCurrentRoleBadge').innerText = "第二階段：工作小組選舉";
             grid.className = "viewer-main-grid multi-col";
+
+            let maxActualBallots = 0;
             const roles = ["宣道", "教務", "教育", "事務", "資訊", "會計", "出納"];
-            
+            roles.forEach(r => {
+                const sum = Object.values(state.votes[r] || {}).reduce((a, b) => a + b, 0);
+                const ballots = LIMITS[r] === 1 ? sum : Math.ceil(sum / 2);
+                if (ballots > maxActualBallots) maxActualBallots = ballots;
+            });
+
+            document.getElementById('viewerTotalBallots').innerText = `${maxActualBallots} 張`;
+            const percent = Math.min(Math.round((maxActualBallots / state.attendeesCount) * 100), 100);
+            document.getElementById('viewerTurnoutRate').innerText = `${percent}%`;
+
             roles.forEach(role => {
                 const roleVotes = state.votes[role] || {};
                 const sorted = Object.entries(roleVotes).filter(([_, c]) => c > 0).sort((a, b) => b[1] - a[1]);
                 const maxVote = sorted.length > 0 ? sorted[0][1] : 1;
 
-                let roleHtml = `<div class="viewer-panel"><div class="viewer-panel-title"><span>【${role}】</span></div><div class="viewer-chart-list">`;
+                let roleHtml = `<div class="viewer-panel"><div class="viewer-panel-title"><span>【${role}】(選${LIMITS[role]}名)</span></div><div class="viewer-chart-list">`;
                 if (sorted.length === 0) {
                     roleHtml += `<div style="text-align: center; color: var(--text-muted); padding: 30px 0;">等待選票...</div>`;
                 } else {
@@ -763,8 +779,8 @@ function updateUI() {
                         const isWinner = index < LIMITS[role];
                         roleHtml += `
                             <div class="viewer-bar-container">
-                                <div class="viewer-bar-label"><span>${name}</span><span>${count} 票</span></div>
-                                <div class="viewer-bar-outer"><div class="viewer-bar-inner ${isWinner?'winner-bar':''}" style="width: ${percentage}%;"></div></div>
+                                <div class="viewer-bar-label" style="font-size:0.9rem;"><span>[${CHURCH_MAP[role]?.[name]||"小區"}] ${name} ${isWinner?'👑':''}</span><span>${count} 票</span></div>
+                                <div class="viewer-bar-outer" style="height:16px;"><div class="viewer-bar-inner ${isWinner?'winner-bar':''}" style="width: ${percentage}%;"></div></div>
                             </div>`;
                     });
                 }
@@ -780,7 +796,7 @@ function updateUI() {
         if (state.activePhase === 1) {
             let html = '';
             Object.entries(CHURCH_MEMBERS).forEach(([church, members]) => {
-                let sectionHtml = `<div class="group-section"><div class="group-section-title"><span>👑 ${church}教會</span></div><div class="candidate-grid dense">`;
+                let sectionHtml = `<div class="group-section"><div class="group-section-title" style="color:var(--accent-gold);"><span>👑 ${church}教會 (${members.length}席)</span></div><div class="candidate-grid dense">`;
                 members.forEach(name => {
                     const count = state.votes["召集人"][name] || 0;
                     sectionHtml += `
@@ -793,18 +809,58 @@ function updateUI() {
             });
             scrollContainer.innerHTML = html;
         } else {
-            /* 後台唱票格網同步更新：改為宣道優先順序 */
+            /* 聯控順序完美匹配選票：宣道最前 */
             const roles = ["宣道", "教務", "教育", "事務", "資訊", "會計", "出納"];
             roles.forEach(role => {
-                let groupHtml = `<div class="group-section" id="section-${role}"><div class="group-section-title"><span>【${role}】</span></div><div class="candidate-grid spacious">`;
+                let groupHtml = `<div class="group-section" id="section-${role}"><div class="group-section-title"><span>【${role}】小組 (限選 ${LIMITS[role]} 名)</span></div><div class="candidate-grid spacious">`;
                 Object.entries(state.votes[role] || {}).forEach(([name, count]) => {
                     groupHtml += `
                         <div class="cand-card" data-name="${name}" onclick="addVote('${role}', '${name}')">
                             <button class="minus-btn" onclick="event.stopPropagation(); minusVote('${role}', '${name}')">減</button>
-                            <div class="cand-votes">${count}</div><div class="cand-name">${name}</div>
+                            <div class="cand-votes">${count}</div><div class="church-badge">[${CHURCH_MAP[role]?.[name]||"小區"}]</div><div class="cand-name">${name}</div>
                         </div>`;
                 });
                 scrollContainer.innerHTML += groupHtml + `</div></div>`;
+            });
+        }
+
+        // 更新側邊欄與右側計票統計
+        for (const [r, _] of Object.entries(CANDIDATES_DATA)) {
+            const sum = Object.values(state.votes[r] || {}).reduce((a, b) => a + b, 0);
+            const totalForRole = LIMITS[r] === 1 ? sum : Math.ceil(sum / 2);
+            document.getElementById(`sidebar-tally-${r}`).innerText = `${totalForRole} 票`;
+        }
+
+        let currentBallots = 0, currentSum = 0;
+        if (state.activePhase === 1) {
+            currentSum = Object.values(state.votes["召集人"] || {}).reduce((a, b) => a + b, 0);
+            currentBallots = currentSum;
+        } else {
+            const roles = ["宣道", "教務", "教育", "事務", "資訊", "會計", "出納"];
+            roles.forEach(r => {
+                const sum = Object.values(state.votes[r] || {}).reduce((a, b) => a + b, 0);
+                const ballots = LIMITS[r] === 1 ? sum : Math.ceil(sum / 2);
+                currentSum += sum;
+                if (ballots > currentBallots) currentBallots = ballots;
+            });
+        }
+
+        document.getElementById('totalBallotsCount').innerText = `${currentBallots} 張`;
+        document.getElementById('validBallotsText').innerText = `${currentSum} 票`;
+        document.getElementById('invalidBallotsText').innerText = `${state.attendeesCount} 人`;
+
+        const logList = document.getElementById('historyLogList');
+        if (state.history.length === 0) {
+            logList.innerHTML = `<div style="color: #64748b; text-align: center; padding-top: 35px;">暫無唱票紀錄</div>`;
+        } else {
+            logList.innerHTML = '';
+            [...state.history].reverse().slice(0, 15).forEach(log => {
+                const isMinus = log.action === "MINUS";
+                logList.innerHTML += `
+                    <div class="history-item ${isMinus?'minus':''}">
+                        <span>[${log.role}] ${log.name}</span>
+                        <strong style="color:${isMinus?'var(--accent-red)':'var(--accent-blue)'};">${isMinus?'扣回 1 票':'加 1 票'}</strong>
+                    </div>`;
             });
         }
     }
@@ -812,7 +868,7 @@ function updateUI() {
 
 function openProjectorWindow() {
     const url = window.location.href.split('#')[0] + "#viewer";
-    projectorWindowRef = window.open(url, 'viewer_window', 'width=1220,height=800');
+    projectorWindowRef = window.open(url, 'viewer_window', 'width=1220,height=800,toolbar=no,menubar=no,scrollbars=yes');
     setTimeout(() => { syncToProjector(); }, 500);
 }
 
@@ -838,14 +894,28 @@ function showCustomConfirm(title, message, onConfirm) {
 function closeCustomModal() { document.getElementById('customModal').classList.add('hidden'); }
 
 function resetSystemWithConfirm() {
-    showCustomConfirm("大會數據清除歸零", "確定要清空所有數據嗎？", function() {
+    showCustomConfirm("大會數據清除歸零", "確定要將第一與第二階段開票票數全部清空嗎？", function() {
         localStorage.removeItem("BALLOT_TALLY_ELECTION_STATE_V4");
         resetStateData();
         updateUI();
     });
 }
 
-function downloadCSVBackup() {}
+function downloadCSVBackup() {
+    let csvContent = "\ufeff大會階段,選舉職務,推薦教會,候選人姓名,已唱得票數\n";
+    for (const [role, roleVotes] of Object.entries(state.votes)) {
+        const phase = role === "召集人" ? "第一階段" : "第二階段";
+        for (const [name, count] of Object.entries(roleVotes)) {
+            const church = (role === "召集人" ? CONVENER_CHURCH_MAP[name] : CHURCH_MAP[role]?.[name]) || "小區";
+            csvContent += `"${phase}","${role}","${church}","${name}",${count}\n`;
+        }
+    }
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = `115年小區職務會實體紙本開票總報表.csv`;
+    link.click();
+}
 
 window.onload = function() {
     loadState();
