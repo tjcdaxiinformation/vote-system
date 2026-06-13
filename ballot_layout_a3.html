@@ -4,316 +4,65 @@
     <meta charset="UTF-8">
     <title>115年6月小區職務會大會選票 (A4 兩大張直書版)</title>
     <style>
-        /* ==========================================
-           🎨 A4 橫放列印規格設定 (297mm x 210mm)
-           ========================================== */
-        @page {
-            size: A4 landscape;
-            margin: 0;
-        }
+        @page { size: A4 landscape; margin: 0; }
+        body { margin: 0; padding: 0; background-color: #fff; font-family: "Microsoft JhengHei", sans-serif; -webkit-print-color-adjust: exact; }
+        
+        .page-container { width: 297mm; height: 210mm; box-sizing: border-box; padding: 8mm 10mm; position: relative; page-break-after: always; display: flex; flex-direction: column; justify-content: space-between; }
 
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #fff;
-            font-family: "Microsoft JhengHei", "黑體-繁", sans-serif;
-            -webkit-print-color-adjust: exact;
-        }
+        .ballot-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2.5px solid #000; padding-bottom: 2mm; margin-bottom: 2.5mm; }
+        .ballot-title-section { display: flex; align-items: baseline; gap: 4mm; }
+        .ballot-title-section h1 { font-size: 18pt; margin: 0; font-weight: 900; }
+        .ballot-instruction { font-size: 10pt; font-weight: bold; background-color: #eaeaea; border: 1px solid #000; padding: 0.8mm 3mm; border-radius: 4px; }
+        .ballot-meta { font-size: 10pt; font-weight: bold; color: #333; }
 
-        /* A4 獨立頁面容器 */
-        .page-container {
-            width: 297mm;
-            height: 210mm;
-            box-sizing: border-box;
-            padding: 8mm 10mm;
-            position: relative;
-            page-break-after: always; /* 強制自動分頁 */
-            background-color: #fff;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
+        .convener-row { display: flex; gap: 1.5mm; height: 48mm; align-items: center; margin-bottom: 1.5mm; width: 100%; }
+        .church-group { display: flex; border: 1.5px solid #000; border-radius: 4px; padding: 1mm; gap: 0.8mm; background-color: #fafafa; height: 100%; box-sizing: border-box; }
+        .church-group-title { writing-mode: vertical-rl; text-orientation: upright; background-color: #000; color: #fff; font-weight: bold; font-size: 8.5pt; padding: 1.5mm 1mm; display: flex; align-items: center; justify-content: center; border-radius: 2px; }
 
-        /* 選票頂部資訊 */
-        .ballot-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 2.5px solid #000;
-            padding-bottom: 2mm;
-            margin-bottom: 2.5mm;
-        }
-        .ballot-title-section {
-            display: flex;
-            align-items: baseline;
-            gap: 4mm;
-        }
-        .ballot-title-section h1 {
-            font-size: 18pt;
-            margin: 0;
-            font-weight: 900;
-            letter-spacing: 1px;
-        }
-        .ballot-instruction {
-            font-size: 10pt;
-            font-weight: bold;
-            background-color: #eaeaea;
-            border: 1px solid #000;
-            padding: 0.8mm 3mm;
-            border-radius: 4px;
-        }
-        .ballot-meta {
-            font-size: 10pt;
-            font-weight: bold;
-            color: #333;
-        }
+        .cand-v-card-s1 { display: flex; flex-direction: column; align-items: center; justify-content: space-between; border: 1px solid #000; width: 7.2mm; height: 43mm; padding: 1mm 0.2mm; box-sizing: border-box; background-color: #fff; }
+        .cand-v-card-s1 .cand-name { font-size: 9.5pt; font-weight: bold; writing-mode: vertical-rl; text-orientation: upright; flex-grow: 1; display: flex; align-items: center; justify-content: center; }
+        .cand-v-card-s1 .cand-square-box { width: 5.5mm; height: 5.5mm; border: 1.2px solid #000; margin-top: 1mm; }
 
-        /* ==========================================
-           👑 第一張：召集人(77人) 專用 3 橫列佈局
-           ========================================== */
-        .convener-row {
-            display: flex;
-            gap: 1.5mm;
-            height: 48mm;
-            align-items: center;
-            margin-bottom: 1.5mm;
-            width: 100%;
-        }
-        /* 按教會群組排版 */
-        .church-group {
-            display: flex;
-            border: 1.5px solid #000;
-            border-radius: 4px;
-            padding: 1mm;
-            gap: 0.8mm;
-            background-color: #fafafa;
-            height: 100%;
-            box-sizing: border-box;
-            position: relative;
-        }
-        .church-group-title {
-            writing-mode: vertical-rl;
-            text-orientation: upright;
-            background-color: #000;
-            color: #fff;
-            font-weight: bold;
-            font-size: 8.5pt;
-            padding: 1.5mm 1mm;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            letter-spacing: 0.5mm;
-            border-radius: 2px;
-            line-height: 1.1;
-        }
+        /* 工作小組樣式 */
+        .groups-grid { display: grid; grid-template-columns: 1.12fr 1fr; grid-template-rows: 1fr 1fr; gap: 3.5mm; height: 156mm; box-sizing: border-box; }
+        .group-panel { border: 2px solid #000; border-radius: 6px; padding: 1.5mm; box-sizing: border-box; background-color: #fafafa; display: flex; flex-direction: column; gap: 1.5mm; }
+        .group-panel-header { color: #fff; font-weight: bold; font-size: 9.5pt; padding: 1mm 2.5mm; border-radius: 3px; display: flex; justify-content: space-between; align-items: center; }
+        
+        /* 四種亮色 */
+        .header-宣道 { background-color: #f59e0b; }
+        .header-教牧 { background-color: #84cc16; }
+        .header-總務 { background-color: #06b6d4; }
+        .header-財務 { background-color: #a855f7; }
 
-        /* ==========================================
-           📊 候選人「直書字卡」核心樣式
-           ========================================== */
-        /* 第一張：召集人卡片 (極致化空間利用，容納77人不破版) */
-        .cand-v-card-s1 {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
-            border: 1px solid #000;
-            width: 7.2mm;
-            height: 43mm;
-            padding: 1mm 0.2mm;
-            box-sizing: border-box;
-            background-color: #fff;
-        }
-        .cand-v-card-s1 .cand-name {
-            font-size: 9.5pt;
-            font-weight: bold;
-            writing-mode: vertical-rl;
-            text-orientation: upright;
-            letter-spacing: 0.5px;
-            flex-grow: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            line-height: 1;
-        }
-        .cand-v-card-s1 .cand-square-box {
-            width: 5.5mm;
-            height: 5.5mm;
-            border: 1.2px solid #000;
-            margin-top: 1mm;
-            background-color: #fff;
-            flex-shrink: 0;
-        }
+        .group-cards-container { display: flex; flex-flow: row wrap; gap: 0.5mm; align-content: flex-start; max-width: 100%; }
+        .cand-v-card-s2 { display: flex; flex-direction: column; align-items: center; justify-content: center; border: 1px solid #000; width: 13.5mm; height: 15mm; padding: 0.2mm; box-sizing: border-box; background-color: #fff; }
+        .cand-v-card-s2 .cand-church { font-size: 3pt; color: #666; border-bottom: 0.5px dashed #ccc; width: 100%; text-align: center; }
+        .cand-v-card-s2 .cand-name { font-size: 6pt; font-weight: bold; writing-mode: vertical-rl; text-orientation: upright; flex-grow: 1; display: flex; align-items: center; justify-content: center; }
+        .cand-v-card-s2 .cand-square-box { width: 2.8mm; height: 2.8mm; border: 1px solid #000; margin-top: 0.2mm; }
 
-/* 確保卡片容器只容納兩排，寬度調整 */
-        .group-cards-container {
-            display: flex;
-            flex-flow: row wrap; 
-            gap: 1mm;
-            align-content: flex-start;
-            padding-top: 0.5mm;
-            /* 強制限制寬度，使卡片自動斷行成為兩排 */
-            max-width: 100%; 
-        }
-
-        .cand-v-card-s2 {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid #000;
-            width: 8.5mm;    /* 稍微放寬一點點，讓名字在兩排時更舒服 */
-            height: 20mm;    /* 再縮短，確保不會超出高度 */
-            padding: 0.2mm;
-            box-sizing: border-box;
-            background-color: #fff;
-            flex-shrink: 0;
-        }
-
-        .cand-v-card-s2 .cand-church {
-            font-size: 3.5pt; /* 字體再縮小 */
-            font-weight: bold;
-            color: #555;
-            margin-bottom: 0.1mm;
-            border-bottom: 1px dashed #ccc;
-            width: 100%;
-            text-align: center;
-        }
-
-        .cand-v-card-s2 .cand-name {
-            font-size: 6.5pt; /* 縮小姓名，防止被遮蓋 */
-            font-weight: bold;
-            writing-mode: vertical-rl;
-            text-orientation: upright;
-            letter-spacing: -0.2px; /* 姓名間距內縮 */
-            flex-grow: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            line-height: 0.9;
-        }
-
-        .cand-v-card-s2 .cand-square-box {
-            width: 3mm;    /* 縮小方框 */
-            height: 3mm;
-            border: 1px solid #000;
-            margin-top: 0.3mm;
-            background-color: #fff;
-            flex-shrink: 0;
-        }
-        /* ==========================================
-           💼 第二張：工作小組 2x2 格網版面
-           ========================================== */
-        .groups-grid {
-            display: grid;
-            grid-template-columns: 1.12fr 1fr;
-            grid-template-rows: 1fr 1fr;
-            gap: 3.5mm;
-            height: 156mm;
-            box-sizing: border-box;
-        }
-        .group-panel {
-            border: 2px solid #000;
-            border-radius: 6px;
-            padding: 1.5mm;
-            box-sizing: border-box;
-            background-color: #fafafa;
-            display: flex;
-            flex-direction: column;
-            gap: 1.5mm;
-            overflow: hidden;
-        }
-        .group-panel-header {
-            background-color: #151f32;
-            color: #fff;
-            font-weight: bold;
-            font-size: 9.5pt;
-            padding: 1mm 2.5mm;
-            border-radius: 3px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .group-cards-container {
-            display: flex;
-            flex-flow: row wrap; /* 支援橫向排列，自動換行成上下兩至三排 */
-            gap: 1mm;
-            overflow: hidden;
-            height: 100%;
-            align-content: flex-start; /* 緊貼上方開始排列 */
-            padding-top: 0.5mm;
-        }
-        .split-sub-row {
-            display: flex;
-            gap: 2mm;
-            flex: 1;
-            height: 100%;
-        }
-        .sub-column {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 1mm;
-            height: 100%;
-        }
-        .sub-column-title {
-            background-color: #475569;
-            color: white;
-            font-size: 8pt;
-            font-weight: bold;
-            padding: 0.6mm;
-            text-align: center;
-            border-radius: 2px;
-        }
-
-        /* 選票底部核章欄 */
-        .ballot-footer {
-            border-top: 1.5px solid #000;
-            padding-top: 1.5mm;
-            display: flex;
-            justify-content: space-between;
-            font-size: 9.5pt;
-            font-weight: bold;
-        }
-
-        /* 列印防破版 */
-        @media print {
-            .no-print { display: none; }
-            body { background-color: #fff; }
-        }
+        .split-sub-row { display: flex; gap: 2mm; flex: 1; height: 100%; }
+        .sub-column { flex: 1; display: flex; flex-direction: column; gap: 1mm; height: 100%; }
+        .sub-column-title { background-color: #475569; color: white; font-size: 8pt; font-weight: bold; padding: 0.6mm; text-align: center; border-radius: 2px; }
+        .ballot-footer { border-top: 1.5px solid #000; padding-top: 1.5mm; display: flex; justify-content: space-between; font-weight: bold; }
+        @media print { .no-print { display: none; } }
     </style>
 </head>
 <body>
 
-    <!-- ==========================================
-         👑 第一張 A4 選票：召集人選舉票 (77位)
-         ========================================== -->
     <div class="page-container">
         <div class="ballot-header">
             <div class="ballot-title-section">
                 <h1>復興小區召集人選舉票</h1>
-                <div class="ballot-instruction">【大會說明】當選名額共1名，『請於全體出席職務人員中，名字下方方形空格圈((勾)選1名』</div>
+                <div class="ballot-instruction">【大會說明】當選名額共1名，『請於全體出席職務人員中，名字下方方形空格圈(勾)選1名』</div>
             </div>
             <div class="ballot-meta">小區職務會議選舉專用 (一)</div>
         </div>
-
-        <!-- 3 橫列分組展示，確保 77 人在 A4 橫向完美呈現、字體大且清晰 -->
         <div class="convener-row" id="convener-row-1"></div>
         <div class="convener-row" id="convener-row-2"></div>
         <div class="convener-row" id="convener-row-3"></div>
-
-        <div class="ballot-footer">
-            <span>真耶穌教會西區復興小區115.6職務會議</span>
-            <span>大會主席：_________________</span>
-            <span>監票同工：_________________</span>
-            <span>計票同工：_________________</span>
-        </div>
+        <div class="ballot-footer"><span>真耶穌教會西區復興小區115.6職務會議</span><span>大會主席：____ 監票：____ 計票：____</span></div>
     </div>
 
-
-    <!-- ==========================================
-         💼 第二張 A4 選票：工作小組遴選票
-         ========================================== -->
     <div class="page-container">
         <div class="ballot-header">
             <div class="ballot-title-section">
@@ -324,168 +73,31 @@
         </div>
 
         <div class="groups-grid">
-            <!-- 1. 宣道小組 Panel -->
-            <div class="group-panel" style="grid-column: span 1;">
-                <div class="group-panel-header" style="background-color: #b45309;">
-                    <span>宣道小組</span>
-                    <span style="font-size: 8pt; background: rgba(255,255,255,0.2); padding: 1px 5px; border-radius: 8px;">請圈選 2 名</span>
-                </div>
-                <div class="group-cards-container" id="cards-宣道"></div>
+            <div class="group-panel"><div class="group-panel-header header-宣道"><span>宣道小組</span><span style="font-size: 7pt;">請圈選 2 名</span></div><div class="group-cards-container" id="cards-宣道"></div></div>
+            <div class="group-panel"><div class="group-panel-header header-教牧"><span>教牧小組</span><span style="font-size: 7pt;">各圈選 1 名</span></div>
+                <div class="split-sub-row"><div class="sub-column"><div class="sub-column-title">教務</div><div class="group-cards-container" id="cards-教務"></div></div><div class="sub-column" style="border-left: 1px dashed #cbd5e1; padding-left: 1.5mm;"><div class="sub-column-title">教育</div><div class="group-cards-container" id="cards-教育"></div></div></div>
             </div>
-
-            <!-- 2. 教牧小組 Panel -->
-            <div class="group-panel">
-                <div class="group-panel-header">
-                    <span>教牧小組</span>
-                    <span style="font-size: 8pt; background: rgba(255,255,255,0.2); padding: 1px 5px; border-radius: 8px;">各圈選 1 名</span>
-                </div>
-                <div class="split-sub-row">
-                    <div class="sub-column">
-                        <div class="sub-column-title">教務 (選1名)</div>
-                        <div class="group-cards-container" id="cards-教務"></div>
-                    </div>
-                    <div class="sub-column" style="border-left: 1px dashed #cbd5e1; padding-left: 1.5mm;">
-                        <div class="sub-column-title">教育 (選1名)</div>
-                        <div class="group-cards-container" id="cards-教育"></div>
-                    </div>
-                </div>
+            <div class="group-panel"><div class="group-panel-header header-總務"><span>總務小組</span><span style="font-size: 7pt;">各圈選 1 名</span></div>
+                <div class="split-sub-row"><div class="sub-column"><div class="sub-column-title">事務</div><div class="group-cards-container" id="cards-事務"></div></div><div class="sub-column" style="border-left: 1px dashed #cbd5e1; padding-left: 1.5mm;"><div class="sub-column-title">資訊</div><div class="group-cards-container" id="cards-資訊"></div></div></div>
             </div>
-
-            <!-- 3. 總務小組 Panel -->
-            <div class="group-panel">
-                <div class="group-panel-header">
-                    <span>總務小組</span>
-                    <span style="font-size: 8pt; background: rgba(255,255,255,0.2); padding: 1px 5px; border-radius: 8px;">各圈選 1 名</span>
-                </div>
-                <div class="split-sub-row">
-                    <div class="sub-column">
-                        <div class="sub-column-title">事務 (選1名)</div>
-                        <div class="group-cards-container" id="cards-事務"></div>
-                    </div>
-                    <div class="sub-column" style="border-left: 1px dashed #cbd5e1; padding-left: 1.5mm;">
-                        <div class="sub-column-title">資訊 (選1名)</div>
-                        <div class="group-cards-container" id="cards-資訊"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 4. 財務小組 Panel -->
-            <div class="group-panel">
-                <div class="group-panel-header">
-                    <span>財務小組</span>
-                    <span style="font-size: 8pt; background: rgba(255,255,255,0.2); padding: 1px 5px; border-radius: 8px;">各圈選 1 名</span>
-                </div>
-                <div class="split-sub-row">
-                    <div class="sub-column">
-                        <div class="sub-column-title">會計 (選1名)</div>
-                        <div class="group-cards-container" id="cards-會計"></div>
-                    </div>
-                    <div class="sub-column" style="border-left: 1px dashed #cbd5e1; padding-left: 1.5mm;">
-                        <div class="sub-column-title">出納 (選1名)</div>
-                        <div class="group-cards-container" id="cards-出納"></div>
-                    </div>
-                </div>
+            <div class="group-panel"><div class="group-panel-header header-財務"><span>財務小組</span><span style="font-size: 7pt;">各圈選 1 名</span></div>
+                <div class="split-sub-row"><div class="sub-column"><div class="sub-column-title">會計</div><div class="group-cards-container" id="cards-會計"></div></div><div class="sub-column" style="border-left: 1px dashed #cbd5e1; padding-left: 1.5mm;"><div class="sub-column-title">出納</div><div class="group-cards-container" id="cards-出納"></div></div></div>
             </div>
         </div>
-
-        <div class="ballot-footer">
-            <span>真耶穌教會西區復興小區115.6職務會議</span>
-            <span>大會主席：_________________</span>
-            <span>監票同工：_________________</span>
-            <span>計票同工：_________________</span>
-        </div>
+        <div class="ballot-footer"><span>真耶穌教會西區復興小區115.6職務會議</span><span>大會主席：____ 監票：____ 計票：____</span></div>
     </div>
 
-</div>
-
 <script>
-    // 🗃️ 官方出席名冊與小組資料 (與上傳的 Excel 數據 100% 同步)
-    const CHURCH_MEMBERS = {
-        "八德": ["林新民", "黃詩華", "黃浩瀚", "林佳芳", "白米加", "羅惠真", "洪靜雯"],
-        "崎頂": ["黃孟平", "簡忠榮", "曾杏儀", "鍾明興", "黃彥綸", "林惠雯", "李美秀", "胡正一"],
-        "大溪": ["梁秀娟", "王鴻志", "張蓉惠", "楊忠生", "林茜葦", "鍾霖恩", "黃琬珊", "陳微慎"],
-        "復興": ["宗恆宇", "林俊傑", "張金德", "林盛強", "周筱萍"],
-        "義盛": ["田文明", "張勇光", "張錦琇", "彭志強", "王路得"],
-        "大灣": ["李永賢", "林新賜", "林宣平", "羅香美", "黃佳寧", "李佳恩", "馬秀彥", "李永生", "李良僕"],
-        "雪霧鬧": ["卓暐嘉", "卓村榮", "胡燕琳", "卓建新", "陳齊揚", "鍾秀錦", "鍾秀珍"],
-        "上巴陵": ["賴多加", "胡明正", "林月霞", "胡明勇", "蔡閣雅", "陳舒瑤", "胡美珠"],
-        "中巴陵": ["楊念華", "田思惠", "胡弘旭", "胡倩蓉", "葛美蓮", "杜文義"],
-        "三光": ["姜鎮信", "姜忠良", "胡采恩", "張大成", "姜呈安", "簡紫萱", "楊慧玲"],
-        "光華": ["鍾阿亮", "劉偉凡", "劉偉迦", "吳以利沙", "賴新明", "簡愛蓮", "林惠美", "曾秀英"]
-    };
-
-    const CANDIDATES = {
-        "教務": ["林新民", "黃孟平", "梁秀娟", "宗恆宇", "田文明", "李永賢", "卓暐嘉", "賴多加", "楊念華", "姜鎮信", "鍾阿亮", "胡正一", "陳微慎", "李永生", "李良僕", "杜文義", "吳以利沙"],
-        "教育": ["黃浩瀚", "曾杏儀", "張蓉惠", "張錦琇", "林宣平", "胡燕琳", "林月霞", "田思惠", "胡采恩", "胡正一", "陳微慎", "李永生", "李良僕", "杜文義", "吳以利沙"],
-        "宣道": ["黃詩華", "簡忠榮", "王鴻志", "林俊傑", "張勇光", "林新賜", "卓村榮", "胡明正", "楊念華", "姜忠良", "胡正一", "陳微慎", "李永生", "李良僕", "杜文義", "吳以利沙"],
-        "事務": ["林佳芳", "鍾明興", "楊忠生", "張金德", "彭志強", "羅香美", "卓建新", "胡明勇", "胡弘旭", "張大成", "劉偉迦", "胡正一", "陳微慎", "李永生", "李良僕", "杜文義", "吳以利沙"],
-        "資訊": ["白米加", "黃彥綸", "林茜葦", "林盛強", "黃佳寧", "陳齊揚", "蔡閣雅", "胡倩蓉", "姜呈安", "劉偉凡", "胡正一", "陳微慎", "李永生", "李良僕", "杜文義", "吳以利沙"],
-        "會計": ["羅惠真", "林惠雯", "鍾霖恩", "周筱萍", "王路得", "李佳恩", "鍾秀錦", "陳舒瑤", "葛美蓮", "簡紫萱", "胡正一", "陳微慎", "李永生", "李良僕", "杜文義", "吳以利沙"],
-        "出納": ["洪靜雯", "李美秀", "黃琬珊", "馬秀彥", "鍾秀珍", "胡美珠", "楊慧玲", "胡正一", "陳微慎", "李永生", "李良僕", "杜文義", "吳以利沙"]
-    };
-
-    // 建立反向對照：姓名對應推薦代表教會
-    const NAME_TO_CHURCH = {};
-    for (const [church, members] of Object.entries(CHURCH_MEMBERS)) {
-        members.forEach(name => NAME_TO_CHURCH[name] = church);
-    }
-
-    // ==========================================
-    // 👑 1. 第一大張：召集人選舉票 (3列群組排版)
-    // ==========================================
-    const row1Churches = ["八德", "崎頂", "大溪"];
-    const row2Churches = ["復興", "義盛", "大灣", "雪霧鬧"];
-    const row3Churches = ["上巴陵", "中巴陵", "三光", "光華"];
-
-    function renderConvenerRow(rowId, churches) {
-        const rowEl = document.getElementById(rowId);
-        rowEl.innerHTML = '';
-        churches.forEach(church => {
-            const members = CHURCH_MEMBERS[church];
-            let groupHtml = `<div class="church-group"><div class="church-group-title">${church}</div>`;
-            members.forEach(name => {
-                groupHtml += `
-                    <div class="cand-v-card-s1">
-                        <div class="cand-name">${name}</div>
-                        <div class="cand-square-box"></div>
-                    </div>
-                `;
-            });
-            groupHtml += `</div>`;
-            rowEl.innerHTML += groupHtml;
-        });
-    }
-
-    renderConvenerRow('convener-row-1', row1Churches);
-    renderConvenerRow('convener-row-2', row2Churches);
-    renderConvenerRow('convener-row-3', row3Churches);
-
-    // ==========================================
-    // 💼 2. 第二大張：工作小組選舉票 各幹部
-    // ==========================================
-    function fillVerticalCards(containerId, list) {
-        const container = document.getElementById(containerId);
-        container.innerHTML = '';
-        list.forEach(name => {
-            const church = NAME_TO_CHURCH[name] || "小區";
-            container.innerHTML += `
-                <div class="cand-v-card-s2">
-                    <div class="cand-church">[${church}]</div>
-                    <div class="cand-name">${name}</div>
-                    <div class="cand-square-box"></div>
-                </div>
-            `;
-        });
-    }
-
-    fillVerticalCards('cards-宣道', CANDIDATES["宣道"]);
-    fillVerticalCards('cards-教務', CANDIDATES["教務"]);
-    fillVerticalCards('cards-教育', CANDIDATES["教育"]);
-    fillVerticalCards('cards-事務', CANDIDATES["事務"]);
-    fillVerticalCards('cards-資訊', CANDIDATES["資訊"]);
-    fillVerticalCards('cards-會計', CANDIDATES["會計"]);
-    fillVerticalCards('cards-出納', CANDIDATES["出納"]);
-
+    // 資料部分維持不變 (略)
+    const CHURCH_MEMBERS = { "八德": ["林新民", "黃詩華", "黃浩瀚", "林佳芳", "白米加", "羅惠真", "洪靜雯"], "崎頂": ["黃孟平", "簡忠榮", "曾杏儀", "鍾明興", "黃彥綸", "林惠雯", "李美秀", "胡正一"], "大溪": ["梁秀娟", "王鴻志", "張蓉惠", "楊忠生", "林茜葦", "鍾霖恩", "黃琬珊", "陳微慎"], "復興": ["宗恆宇", "林俊傑", "張金德", "林盛強", "周筱萍"], "義盛": ["田文明", "張勇光", "張錦琇", "彭志強", "王路得"], "大灣": ["李永賢", "林新賜", "林宣平", "羅香美", "黃佳寧", "李佳恩", "馬秀彥", "李永生", "李良僕"], "雪霧鬧": ["卓暐嘉", "卓村榮", "胡燕琳", "卓建新", "陳齊揚", "鍾秀錦", "鍾秀珍"], "上巴陵": ["賴多加", "胡明正", "林月霞", "胡明勇", "蔡閣雅", "陳舒瑤", "胡美珠"], "中巴陵": ["楊念華", "田思惠", "胡弘旭", "胡倩蓉", "葛美蓮", "杜文義"], "三光": ["姜鎮信", "姜忠良", "胡采恩", "張大成", "姜呈安", "簡紫萱", "楊慧玲"], "光華": ["鍾阿亮", "劉偉凡", "劉偉迦", "吳以利沙", "賴新明", "簡愛蓮", "林惠美", "曾秀英"] };
+    const CANDIDATES = { "教務": ["林新民", "黃孟平", "梁秀娟", "宗恆宇", "田文明", "李永賢", "卓暐嘉", "賴多加", "楊念華", "姜鎮信", "鍾阿亮", "胡正一", "陳微慎", "李永生", "李良僕", "杜文義", "吳以利沙"], "教育": ["黃浩瀚", "曾杏儀", "張蓉惠", "張錦琇", "林宣平", "胡燕琳", "林月霞", "田思惠", "胡采恩", "胡正一", "陳微慎", "李永生", "李良僕", "杜文義", "吳以利沙"], "宣道": ["黃詩華", "簡忠榮", "王鴻志", "林俊傑", "張勇光", "林新賜", "卓村榮", "胡明正", "楊念華", "姜忠良", "胡正一", "陳微慎", "李永生", "李良僕", "杜文義", "吳以利沙"], "事務": ["林佳芳", "鍾明興", "楊忠生", "張金德", "彭志強", "羅香美", "卓建新", "胡明勇", "胡弘旭", "張大成", "劉偉迦", "胡正一", "陳微慎", "李永生", "李良僕", "杜文義", "吳以利沙"], "資訊": ["白米加", "黃彥綸", "林茜葦", "林盛強", "黃佳寧", "陳齊揚", "蔡閣雅", "胡倩蓉", "姜呈安", "劉偉凡", "胡正一", "陳微慎", "李永生", "李良僕", "杜文義", "吳以利沙"], "會計": ["羅惠真", "林惠雯", "鍾霖恩", "周筱萍", "王路得", "李佳恩", "鍾秀錦", "陳舒瑤", "葛美蓮", "簡紫萱", "胡正一", "陳微慎", "李永生", "李良僕", "杜文義", "吳以利沙"], "出納": ["洪靜雯", "李美秀", "黃琬珊", "馬秀彥", "鍾秀珍", "胡美珠", "楊慧玲", "胡正一", "陳微慎", "李永生", "李良僕", "杜文義", "吳以利沙"] };
+    const NAME_TO_CHURCH = {}; for (const [c, m] of Object.entries(CHURCH_MEMBERS)) { m.forEach(n => NAME_TO_CHURCH[n] = c); }
+    
+    function renderConvenerRow(r, cs) { const e = document.getElementById(r); cs.forEach(c => { let h = `<div class="church-group"><div class="church-group-title">${c}</div>`; CHURCH_MEMBERS[c].forEach(n => h += `<div class="cand-v-card-s1"><div class="cand-name">${n}</div><div class="cand-square-box"></div></div>`); e.innerHTML += h + `</div>`; }); }
+    renderConvenerRow('convener-row-1', ["八德", "崎頂", "大溪"]); renderConvenerRow('convener-row-2', ["復興", "義盛", "大灣", "雪霧鬧"]); renderConvenerRow('convener-row-3', ["上巴陵", "中巴陵", "三光", "光華"]);
+    
+    function fillVerticalCards(id, list) { const c = document.getElementById(id); list.forEach(n => { c.innerHTML += `<div class="cand-v-card-s2"><div class="cand-church">[${NAME_TO_CHURCH[n]||"小區"}]</div><div class="cand-name">${n}</div><div class="cand-square-box"></div></div>`; }); }
+    Object.keys(CANDIDATES).forEach(k => fillVerticalCards('cards-'+k, CANDIDATES[k]));
 </script>
 </body>
 </html>
