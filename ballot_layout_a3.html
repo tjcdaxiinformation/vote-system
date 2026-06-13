@@ -43,8 +43,20 @@
         .split-sub-row { display: flex; gap: 2mm; flex: 1; height: 100%; }
         .sub-column { flex: 1; display: flex; flex-direction: column; gap: 1mm; height: 100%; }
         .sub-column-title { background-color: #475569; color: white; font-size: 8pt; font-weight: bold; padding: 0.6mm; text-align: center; border-radius: 2px; }
-        .ballot-footer { border-top: 1.5px solid #000; padding-top: 1.5mm; display: flex; justify-content: space-between; font-weight: bold; }
-        @media print { .no-print { display: none; } }
+        .ballot-footer {
+            border-top: 1.5px solid #000;
+            padding-top: 2.5mm;
+            display: flex;
+            justify-content: space-between; /* 平均分配四等份 */
+            align-items: center;
+            font-size: 9pt;
+            font-weight: bold;
+            width: 100%;
+        }
+        .ballot-footer span {
+            flex: 1; /* 讓每個 span 等寬 */
+            text-align: center; /* 文字置中 */
+        }        @media print { .no-print { display: none; } }
     </style>
 </head>
 <body>
@@ -56,12 +68,12 @@
                 <div class="ballot-instruction">【大會說明】當選名額共1名，『請於全體出席職務人員中，名字下方方形空格圈(勾)選1名』</div>
             </div>
             <div class="ballot-meta">小區職務會議選舉專用 (一)</div>
+        <div class="ballot-footer">
+            <span>真耶穌教會西區復興小區115.6職務會議</span>
+            <span>大會主席：__________</span>
+            <span>監票同工：__________</span>
+            <span>計票同工：__________</span>
         </div>
-        <div class="convener-row" id="convener-row-1"></div>
-        <div class="convener-row" id="convener-row-2"></div>
-        <div class="convener-row" id="convener-row-3"></div>
-        <div class="ballot-footer"><span>真耶穌教會西區復興小區115.6職務會議</span><span>大會主席：____ 監票：____ 計票：____</span></div>
-    </div>
 
     <div class="page-container">
         <div class="ballot-header">
