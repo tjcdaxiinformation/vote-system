@@ -23,10 +23,23 @@
         .cand-v-card-s1 .cand-name { font-size: 9.5pt; font-weight: bold; writing-mode: vertical-rl; text-orientation: upright; flex-grow: 1; display: flex; align-items: center; justify-content: center; }
         .cand-v-card-s1 .cand-square-box { width: 5.5mm; height: 5.5mm; border: 1.2px solid #000; margin-top: 1mm; }
 
-        /* 工作小組樣式 */
-        .groups-grid { display: grid; grid-template-columns: 1.12fr 1fr; grid-template-rows: 1fr 1fr; gap: 3.5mm; height: 156mm; box-sizing: border-box; }
-        .group-panel { border: 2px solid #000; border-radius: 6px; padding: 1.5mm; box-sizing: border-box; background-color: #fafafa; display: flex; flex-direction: column; gap: 1.5mm; }
-        .group-panel-header { color: #fff; font-weight: bold; font-size: 9.5pt; padding: 1mm 2.5mm; border-radius: 3px; display: flex; justify-content: space-between; align-items: center; }
+       /* =========================================================
+           統一工作小組排版：移除子欄位限制，強制使用 flex-wrap 兩排
+           ========================================================= */
+        .groups-grid { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            grid-template-rows: 1fr 1fr; 
+            gap: 3mm; 
+            height: 160mm; 
+        }
+
+        .group-panel { 
+            border: 2px solid #000; border-radius: 6px; padding: 2mm; 
+            background-color: #fafafa; display: flex; flex-direction: column; 
+        }
+
+        .group-panel-header { color: #fff; font-weight: bold; padding: 1mm 2mm; margin-bottom: 2mm; border-radius: 3px; display: flex; justify-content: space-between; }
         
         /* 四種亮色 */
         .header-宣道 { background-color: #f59e0b; }
@@ -34,17 +47,20 @@
         .header-總務 { background-color: #06b6d4; }
         .header-財務 { background-color: #a855f7; }
 
-        .group-cards-container { display: flex; flex-flow: row wrap; gap: 0.5mm; align-content: flex-start; max-width: 100%; }
-        .cand-v-card-s2 { display: flex; flex-direction: column; align-items: center; justify-content: center; border: 1px solid #000; width: 13.5mm; height: 15mm; padding: 0.2mm; box-sizing: border-box; background-color: #fff; }
-        .cand-v-card-s2 .cand-church { font-size: 3pt; color: #666; border-bottom: 0.5px dashed #ccc; width: 100%; text-align: center; }
-        .cand-v-card-s2 .cand-name { font-size: 6pt; font-weight: bold; writing-mode: vertical-rl; text-orientation: upright; flex-grow: 1; display: flex; align-items: center; justify-content: center; }
-        .cand-v-card-s2 .cand-square-box { width: 2.8mm; height: 2.8mm; border: 1px solid #000; margin-top: 0.2mm; }
+        /* 關鍵修改：將所有組別的小容器設為 flex 兩排 */
+        .group-cards-container { 
+            display: flex; flex-flow: row wrap; gap: 1mm; align-content: flex-start;
+            width: 100%; /* 強制填滿面板寬度 */
+        }
 
-        .split-sub-row { display: flex; gap: 2mm; flex: 1; height: 100%; }
-        .sub-column { flex: 1; display: flex; flex-direction: column; gap: 1mm; height: 100%; }
-        .sub-column-title { background-color: #475569; color: white; font-size: 8pt; font-weight: bold; padding: 0.6mm; text-align: center; border-radius: 2px; }
-        .ballot-footer { border-top: 1.5px solid #000; padding-top: 1.5mm; display: flex; justify-content: space-between; font-weight: bold; }
-        @media print { .no-print { display: none; } }
+        .cand-v-card-s2 { 
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            border: 1px solid #000; width: 14.5mm; height: 16mm; padding: 0.2mm; box-sizing: border-box; background-color: #fff;
+        }
+
+        .cand-v-card-s2 .cand-church { font-size: 3pt; color: #666; border-bottom: 0.5px dashed #ccc; width: 100%; text-align: center; }
+        .cand-v-card-s2 .cand-name { font-size: 6pt; font-weight: bold; writing-mode: vertical-rl; text-orientation: upright; line-height: 1; flex-grow: 1; }
+        .cand-v-card-s2 .cand-square-box { width: 3mm; height: 3mm; border: 1px solid #000; margin-top: 0.2mm; }
     </style>
 </head>
 <body>
@@ -72,17 +88,19 @@
             <div class="ballot-meta">小區職務會議選舉專用 (二)</div>
         </div>
 
-        <div class="groups-grid">
-            <div class="group-panel"><div class="group-panel-header header-宣道"><span>宣道小組</span><span style="font-size: 7pt;">請圈選 2 名</span></div><div class="group-cards-container" id="cards-宣道"></div></div>
-            <div class="group-panel"><div class="group-panel-header header-教牧"><span>教牧小組</span><span style="font-size: 7pt;">各圈選 1 名</span></div>
-                <div class="split-sub-row"><div class="sub-column"><div class="sub-column-title">教務</div><div class="group-cards-container" id="cards-教務"></div></div><div class="sub-column" style="border-left: 1px dashed #cbd5e1; padding-left: 1.5mm;"><div class="sub-column-title">教育</div><div class="group-cards-container" id="cards-教育"></div></div></div>
-            </div>
-            <div class="group-panel"><div class="group-panel-header header-總務"><span>總務小組</span><span style="font-size: 7pt;">各圈選 1 名</span></div>
-                <div class="split-sub-row"><div class="sub-column"><div class="sub-column-title">事務</div><div class="group-cards-container" id="cards-事務"></div></div><div class="sub-column" style="border-left: 1px dashed #cbd5e1; padding-left: 1.5mm;"><div class="sub-column-title">資訊</div><div class="group-cards-container" id="cards-資訊"></div></div></div>
-            </div>
-            <div class="group-panel"><div class="group-panel-header header-財務"><span>財務小組</span><span style="font-size: 7pt;">各圈選 1 名</span></div>
-                <div class="split-sub-row"><div class="sub-column"><div class="sub-column-title">會計</div><div class="group-cards-container" id="cards-會計"></div></div><div class="sub-column" style="border-left: 1px dashed #cbd5e1; padding-left: 1.5mm;"><div class="sub-column-title">出納</div><div class="group-cards-container" id="cards-出納"></div></div></div>
-            </div>
+       <div class="groups-grid">
+            <!-- 宣道 -->
+            <div class="group-panel"><div class="group-panel-header header-宣道"><span>宣道小組</span><span>請圈選 2 名</span></div><div class="group-cards-container" id="cards-宣道"></div></div>
+            
+            <!-- 教牧 (教務+教育合併) -->
+            <div class="group-panel"><div class="group-panel-header header-教牧"><span>教牧小組 (教務/教育)</span><span>各圈選 1 名</span></div><div class="group-cards-container" id="cards-教務" style="margin-bottom: 2mm;"></div><div class="group-cards-container" id="cards-教育"></div></div>
+            
+            <!-- 總務 (事務+資訊合併) -->
+            <div class="group-panel"><div class="group-panel-header header-總務"><span>總務小組 (事務/資訊)</span><span>各圈選 1 名</span></div><div class="group-cards-container" id="cards-事務" style="margin-bottom: 2mm;"></div><div class="group-cards-container" id="cards-資訊"></div></div>
+            
+            <!-- 財務 (會計+出納合併) -->
+            <div class="group-panel"><div class="group-panel-header header-財務"><span>財務小組 (會計/出納)</span><span>各圈選 1 名</span></div><div class="group-cards-container" id="cards-會計" style="margin-bottom: 2mm;"></div><div class="group-cards-container" id="cards-出納"></div></div>
+        </div>
         </div>
         <div class="ballot-footer"><span>真耶穌教會西區復興小區115.6職務會議</span><span>大會主席：____ 監票：____ 計票：____</span></div>
     </div>
