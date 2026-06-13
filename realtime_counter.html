@@ -258,6 +258,10 @@
                 <span>召集人</span>
                 <span class="role-btn-tally" id="sidebar-tally-召集人">0 票</span>
             </button>
+            <button class="role-btn" id="role-btn-宣道" onclick="handleRoleClick('宣道')" disabled>
+                <span>宣道組 (雙選)</span>
+                <span class="role-btn-tally" id="sidebar-tally-宣道">0 票</span> 
+            </button>
             <button class="role-btn" id="role-btn-教務" onclick="handleRoleClick('教務')" disabled>
                 <span>教務</span>
                 <span class="role-btn-tally" id="sidebar-tally-教務">0 票</span>
@@ -265,10 +269,6 @@
             <button class="role-btn" id="role-btn-教育" onclick="handleRoleClick('教育')" disabled>
                 <span>教育</span>
                 <span class="role-btn-tally" id="sidebar-tally-教育">0 票</span>
-            </button>
-            <button class="role-btn" id="role-btn-宣道" onclick="handleRoleClick('宣道')" disabled>
-                <span>宣道組 (雙選)</span>
-                <span class="role-btn-tally" id="sidebar-tally-宣道">0 票</span>
             </button>
             <button class="role-btn" id="role-btn-事務" onclick="handleRoleClick('事務')" disabled>
                 <span>事務</span>
@@ -597,7 +597,7 @@ function switchPhase(phaseNum) {
 }
 
 function enableSidebarRoles(enable) {
-    const roles = ["教務", "教育", "宣道", "事務", "資訊", "會計", "出納"];
+const roles = ["宣道", "教務", "教育", "事務", "資訊", "會計", "出納"];
     roles.forEach(role => {
         const btn = document.getElementById(`role-btn-${role}`);
         btn.disabled = !enable;
